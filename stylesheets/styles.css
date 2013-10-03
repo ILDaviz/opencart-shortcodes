@@ -120,7 +120,7 @@ header .version {
 
 header ul.button {
    list-style:none;
-   height:40px;
+   height:50px;
    
    padding:0;
    
@@ -139,20 +139,21 @@ header ul.button {
 }
 
 header ul.button li {
-   width:89px;
+   width:133px;
    float:left;
    border-right:1px solid #d2d2d2;
-   height:40px;
+   height:46px;
+   padding:2px 0;
 }
 
 header ul.button a {
    line-height:1;
-   font-size:11px;
-   color:#999;
+   font-size:13px;
+   color:#666;
    display:block;
    text-align:center;
    padding-top:6px;
-   height:40px;
+   height:46px;
 }
 header ul.button a:hover { border-bottom:none; color:#666; }
 header ul.button a:hover strong { color:#ff6900; }
@@ -163,20 +164,16 @@ strong {
 }
 
 header ul.button li + li {
-   width:88px;
+   width:133px;
    border-left:1px solid #fff;
-}
-
-header ul.button li + li + li {
    border-right:none;
-   width:89px;
 }
 
 header ul.button a strong {
-   font-size:14px;
+   font-size:18px;
    display:block;
    color:#222;
-   margin-top:4px;
+   margin-top:5px;
 }
 
 section {
