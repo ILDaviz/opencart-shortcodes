@@ -9,7 +9,7 @@ body {
    line-height: 25px;
    color:#444;
    font-weight:300;
-   text-shadow:1px 1px 1px #fff;
+   text-shadow:1px 1px 0 #fff;
 }
 h1, h2, h3, h4, h5, h6 {
    font-family: 'Droid Serif', Georgia, Times, serif;
@@ -32,11 +32,11 @@ h2 { font-size: 25px; }
 h3 { font-size: 22px; }
 
 a {
-   color:#39c;
+   color:#2e8cbb;
    font-weight:400;
    text-decoration:none;
 }
-a:hover { border-bottom:1px dotted; }
+a:hover { color:#f46400; border-bottom:1px dotted; }
 
 a small {
    font-size:11px;
@@ -110,7 +110,9 @@ header h1 {
 }
 
 header ul.menu {
-   margin-bottom:40px;
+   margin-bottom:30px;
+   padding-left:15px;
+   list-style:none;
 }
 
 header .version {
@@ -118,9 +120,11 @@ header .version {
    padding-left:5px;
 }
 
+header .github-button { margin:0 0 10px; }
+
 header ul.button {
    list-style:none;
-   height:50px;
+   height:52px;
    
    padding:0;
    
@@ -142,7 +146,7 @@ header ul.button li {
    width:133px;
    float:left;
    border-right:1px solid #d2d2d2;
-   height:46px;
+   height:48px;
    padding:2px 0;
 }
 
@@ -156,7 +160,7 @@ header ul.button a {
    height:46px;
 }
 header ul.button a:hover { border-bottom:none; color:#666; }
-header ul.button a:hover strong { color:#ff6900; }
+header ul.button a:hover strong { color:#f46400; }
 
 strong {
    color:#222;
@@ -195,7 +199,9 @@ hr {
 
 .footer {
    margin-bottom:-10px;
-   color: #666;
+   color: #777;
+   font-style:italic;
+   text-align:right;
 }
 
 @media print, screen and (max-width: 960px) {
