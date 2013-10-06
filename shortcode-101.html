@@ -111,7 +111,7 @@ function link_product(<span class="text-red">$atts</span>, $content = '') {
             
             <p>Which would produce:</p>
             
-            <pre><span class="caption">&lt;a href="http://example.com/">My Caption</a></span></pre>
+            <pre>&lt;span class="caption">&lt;a href="http://example.com/">My Caption&lt;/a>&lt;/span></pre>
             
             <p>The shortcode parser uses a single pass on the post content. This means that if the $content of a shortcode contains another shortcode, it won't be parsed.</p>
             <p>If the enclosing shortcodes designed to allow another shortcode to be parsed, the handler function need to use <code>$this->shortcodes->do_shortcode()</code></p>
