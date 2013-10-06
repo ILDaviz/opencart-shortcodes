@@ -56,200 +56,8 @@
             <ol>
                <li>Login to admin and go to <code>extensions -> information</code></li>
                <li>You can insert new information page, then click <code>source</code> on the editor.</li>
-               <li>Open <code>quick-sample-code.txt</code> from package we download and insert to editor (source mode).
-                  <div class="highlight highlight-html"><pre>
-<h2>Links</h2>
-
-<h3># Product Link</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_product id="42" /]]
-   </div>
-   <p><strong>Result:</strong> [link_product id="42" /]</p>
-
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-   [[link_product id="42" path="25_28" ssl="1" title="Very good products!" /]]
-   </div>
-   <p><strong>Result:</strong> [link_product id="42" path="25_28" ssl="1" title="Very good products!" /]</p>
-
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-   A link to [[link_product id="42" brand="8"]product[/link_product]] with brand.
-   </div>
-   <p><strong>Result:</strong> A link to [link_product id="42" brand="8"]product[/link_product] with brand.</p>
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-   A link to [[link_product id="101" path="25_28"]product[/link_product]] with brand.
-   </div>
-   <p><strong>Result:</strong> A link to [link_product id="101" path="25_28"]product[/link_product] with category. <em>(return plain text if product is not available)</em></p>
-</div>
-
-<h3># Category Link</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_category path="20" ssl="0" /]]
-   </div>
-   <p><strong>Result:</strong> [link_category path="20" ssl="0" /]</p>
-
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      Upcoming amazing [[link_category path="20_27" ssl="0"]macbook[/link_category]] for geek!
-   </div>
-   <p><strong>Result:</strong> Upcoming amazing [link_category path="20_27" ssl="0"]macbook[/link_category] for geek!</p>
-</div>
-
-<h3># Manufacturer Link</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_brand /]]
-   </div>
-   <p><strong>Result:</strong> [link_brand/]</p>
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_brand title="brand custom text"]custom text[/link_brand]]
-   </div>
-   <p><strong>Result:</strong> [link_brand title="brand custom text"]custom text[/link_brand]</p>
-
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      View all [[link_brand brand="8"]apple[/link_brand]] product at the store.
-   </div>
-   <p><strong>Result:</strong> View all [link_brand brand="8" ssl="0"]apple[/link_brand] available at the store.</p>
-</div>
-
-<h3># Information Link</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_info id="6" ssl="0" /]]
-   </div>
-   <p><strong>Result:</strong> [link_info id="6" /]</p>
-
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      Check world wide free [[link_info id="6" ssl="0"]shipping[/link_info]].
-   </div>
-   <p><strong>Result:</strong> Check world wide free [link_info id="6" ssl="1"]shipping[/link_info].</p>
-</div>
-
-<h3># Custom Link</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_custom route="common/home"]homepage[/link_custom]]
-   </div>
-   <p><strong>Result:</strong> [link_custom route="common_home"]homepage[/link_custom]</p>
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      Read our [[link_custom route="information/information" args="information_id=3"]privacy[/link_custom]] policy
-   </div>
-   <p><strong>Result:</strong> Read our [link_custom route="information/information" args="information_id=3"]privacy[/link_custom] policy</p>
-</div>
-
-<h3># Store Link</h3>
-<p>Similiar to custom link shortcode with specific purpose to generate link to multistore.</p>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_store store="1" route="common/home"]homepage[/link_store]]
-   </div>
-   <p><strong>Result:</strong> [link_store store="1" route="common/home"]homepage[/link_store]</p>
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      Read our [[link_store store="1" route="information/information" args="information_id=3"]privacy[/link_store]] policy
-   </div>
-   <p><strong>Result:</strong> Read our [link_store store="1" route="information/information" args="information_id=3"]privacy[/link_store] policy</p>
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[link_store store="2" route="common/home"]homepage[/link_store]]
-   </div>
-   <p><strong>Result:</strong> [link_store store="2" route="common/home"]homepage[/link_store] <em>(return plain text if store is not available)</em></p>
-</div>
-
-<h2>Modules</h2>
-
-<h3># Products Module</h3>
-<div>
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[module_product type="featured" /]]
-   </div>
-   [module_product type="featured" /]
-   
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[module_product type="latest" limit="5" img_w="110" img_h="110" /]]
-   </div>
-   [module_product type="latest" limit="6" img_w="110" img_h="110" /]
-   
-   <div style="overflow:hidden;">
-      <div style="width:49%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[module_product type="special"  limit="3" /]]
-         </div>
-         [module_product type="special" limit="3" /]
-      </div>
-      <div style="width:49%; margin-left:2%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[module_product type="bestseller"  limit="3" /]]
-         </div>
-         [module_product type="bestseller" limit="3" /]
-      </div>
-   </div>
-</div>
-
-<h3># Slideshow Module</h3>
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[module_slideshow id="7" img_w="800" img_h="230" /]]
-   </div>
-   [module_slideshow id="7" img_w="800" img_h="230" /]
-</div>
-
-<h2>Extra Shortcodes</h2>
-
-<h3># Video</h3>
-<div style="margin-left:40px;">
-   <div style="overflow:hidden;">
-      <div style="width:49%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[video type="vimeo" id="23754691" img_w="450" img_h="280" /]]
-         </div>
-         [video type="vimeo" id="23754691" img_w="450" img_h="280" /]
-      </div>
-      <div style="width:49%; margin-left:2%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[video type="youtube" id="kPBzTxZQG5Q" autoplay="0" img_w="450" img_h="280" /]]
-         </div>
-         [video type="youtube" id="kPBzTxZQG5Q" autoplay="0" img_w="450" img_h="280" /]
-      </div>
-   </div>
-</div>
-
-<h3># Image</h3>
-<div style="margin-left:40px;">
-   <div style="overflow:hidden;">
-      <div style="width:49%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[image src="image/data/demo/compaq_presario.jpg" img_w="300" img_h="184" alt="compaq-presario-2014" /]]
-         </div>
-         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-         <p>[image src="image/data/demo/compaq_presario.jpg" img_w="300" img_h="184" alt="compaq-presario-2014" align="center" /] It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      </div>
-      <div style="width:49%; margin-left:2%; float:left;">
-         <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-            [[image img_w="300" img_h="184" alt="compaq-presario-2014" align="right"]image/data/demo/compaq_presario.jpg[/image]]
-         </div>
-         <p>[image img_w="300" img_h="184" alt="compaq-presario-2014" align="right"]image/data/demo/compaq_presario.jpg[/image] Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-         <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      </div>
-   </div>
-</div>
-
-
-<h2>Debug</h2>
-
-<div style="margin-left:40px;">
-   <div style="color:#333; background:#e9effa; font-family:monospace; padding:4px 10px; text-shadow:1px 1px 1px #fff; font-size:13px; margin-bottom:15px;">
-      [[debug]]
-   </div>
-   <p>[debug]</p>
-</div>
-                  </pre></div>
-               </li>
+               <li>Open <code>quick-sample-code.txt</code> at download package and insert to editor (source mode).</li>
                <li>Save the information page and check the result at front site.</li>
-               <li>You should get similiar result as on <code>quick-sample-code.png</code> image.</li>
             </ol>
             
          </section>
@@ -258,15 +66,16 @@
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="javascripts/jquery-2.0.3.min.js"><\/script>')</script>
       <script src="javascripts/microTplEngine.js"></script>
-         <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-         </script>
-         <script type="text/javascript">
-            try {
-               var pageTracker = _gat._getTracker("UA-44563939-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-         </script>
+      <script src="javascripts/scale.fix.js"></script>
+      <script type="text/javascript">
+         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+         try {
+            var pageTracker = _gat._getTracker("UA-44563939-1");
+         pageTracker._trackPageview();
+         } catch(err) {}
+      </script>
    </body>
 </html>
