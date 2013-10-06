@@ -61,9 +61,9 @@ a small {
    outline: 0;
 }
 .octicon-link:before { content: '\00a7'; }
-a.anchor .octicon-link { display:none; color:#000; }
+a.anchor .octicon-link { display:none; }
 a.anchor:hover { border:0; }
-a.anchor:hover .octicon-link{ display:inline-block; }
+a.anchor:hover .octicon-link{ display:inline-block;color:#c10000; }
 
 .wrapper {
    width:960px;
@@ -127,8 +127,9 @@ header {
    width: 270px;
    float: left;
    position: fixed;
-   background: #f2f2f2;
+   background: #f8f8f8;
    padding: 15px;
+   border-radius:5px;
 }
 
 header h1 { 
@@ -255,6 +256,9 @@ hr {
       padding-right:320px;
    }
    
+   header ul.menu { display:block; overflow:hidden; }
+   header ul.menu li { margin-right:15px; float:left; }
+   
    section {
       border:1px solid #e5e5e5;
       border-width:1px 0;
@@ -284,8 +288,10 @@ hr {
    }
    
    header ul.button, header p.view {
-      position:static;
+      position:static; margin-left: 20px;
    }
+   
+   header .github-button { margin-left: 50px; }
    
    pre, code {
       word-wrap:normal;
