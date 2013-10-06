@@ -31,7 +31,7 @@ h1 {
 }
 
 h2 { font-size: 25px; }
-h3 { font-size: 20px; }
+h3 { font-size: 20px; margin:40px 0 15px; }
 h4 { margin: 20px 0 5px; }
 
 a {
@@ -66,8 +66,9 @@ a.anchor:hover { border:0; }
 a.anchor:hover .octicon-link{ display:inline-block;color:#c10000; }
 
 .wrapper {
-   width:960px;
+   width:990px;
    margin:0 auto;
+   overflow:hidden;
 }
 
 blockquote {
@@ -79,7 +80,7 @@ blockquote {
 
 code, pre {
    font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
-   color:#333;
+   color:#555;
    font-size:12px;
 }
 
@@ -89,6 +90,7 @@ pre {
    border-radius:5px;
    border:1px solid #ddd;
    overflow-x: auto;
+   line-height: 18px;
 }
 
 code {
@@ -124,7 +126,7 @@ img {
 }
 
 header {
-   width: 270px;
+   width: 250px;
    float: left;
    position: fixed;
    background: #f8f8f8;
@@ -133,7 +135,7 @@ header {
 }
 
 header h1 { 
-   font-size: 24px;
+   font-size: 22px;
    line-height: 20px;
    margin: 0 0 10px; 
 }
@@ -154,7 +156,7 @@ header .github-button { margin:0 0 10px; }
 header ul.button {
    list-style:none;
    height:52px;
-   
+   width:247px;
    padding:0;
    
    background: #eee;
@@ -168,11 +170,10 @@ header ul.button {
    border-radius:5px;
    border:1px solid #d2d2d2;
    box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
-   width:270px;
 }
 
 header ul.button li {
-   width:133px;
+   width:120px;
    float:left;
    border-right:1px solid #d2d2d2;
    height:48px;
@@ -197,7 +198,6 @@ strong {
 }
 
 header ul.button li + li {
-   width:133px;
    border-left:1px solid #fff;
    border-right:none;
 }
@@ -210,7 +210,7 @@ header ul.button a strong {
 }
 
 section {
-   width:600px;
+   width:670px;
    float:right;
    padding-bottom:50px;
 }
@@ -234,10 +234,13 @@ hr {
 
 .footer {
    margin-bottom:-10px;
-   color: #777;
-   font-style:italic;
+   color: #888;
    text-align:right;
 }
+
+.text-red { color:#c10000; }
+.text-blue { color:#245fb6; }
+.text-green { color:#167b09; }
 
 @media print, screen and (max-width: 960px) {
    

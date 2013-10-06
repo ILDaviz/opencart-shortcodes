@@ -38,19 +38,31 @@
 
             <p>OpenCart shortcodes based on WordPress shortcodes and share similiar format. The first modification of WordPress shortcodes is by <a href="http://forum.opencart.com/viewtopic.php?f=23&amp;t=110892">rempong</a> at OpenCart forum. We learn, modificate and extend it into more robust implementation. </p>
 
-            <p>In quick explanation, when a shortcode is inserted in a OpenCart post or page, it is replaced with some other content. In other words, we instruct OpenCart to find the macro that is in square brackets ([]) and replace it with the appropriate dynamic content, which is produced by a PHP function.</p>
+            <p>In quick explanation, when a shortcode is inserted in a OpenCart post or page, it is replaced with some other content. In other words, we instruct OpenCart to find the macro that is in square brackets ( <code>[ ]</code> ) and replace it with the appropriate dynamic content, which is produced by a PHP function.</p>
 
+            <h3><a name="howitwork" class="anchor" href="#howitwork"><span class="octicon octicon-link"></span></a>How It Works</h3>
+            <p>How shortcodes works within OpenCart MVC? this is an overview of it:</p>
+            
+            <ol>
+               <li><a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/system/library/shortcodes.php">system/library/shortcodes.php</a> is modified version of WordPress <a href="">Shortcodes API</a> to work with OpenCart.</li>
+               <li>We automatically register shortcode and execute shortcode with <a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/vqmod/xml/opencart_shortcodes.xml" class="postlink hs-rss-link">vQmod file</a>.</li>
+               <li>Default shortcode is all available at <a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/system/library/shortcodes.php" class="postlink">system/library/shortcodes.php</a>.</li>
+               <li>Extend shortcode per theme basis at catalog/view/theme/*/shortcodes.php (sample coming soon).</li>
+            </ol>
+            
+            
+            
             <h3><a name="format" class="anchor" href="#format"><span class="octicon octicon-link"></span></a>Format</h3>
 
             <p>Shortcodes available in to type:</p>
             
             <p><strong>Self-closing:</strong></p>
 
-            <pre>[link_product id="x" path="xy_xz" /]</pre>
+            <pre>[<span class="text-red">link_product</span> <span class="text-blue">id="x" path="xy_xz"</span> /]</pre>
 
             <p><strong>Enclosing:</strong></p>
 
-            <pre>[link_product id="x" path="xy_xz"]custom text[/product_link]</pre>
+            <pre>[<span class="text-red">link_product</span> <span class="text-blue">id="x" path="xy_xz"</span>]<span class="text-green">custom text</span>[/<span class="text-red">product_link<span class="text-red">]</pre>
 
             <p>Shortcode contain three parameters that passed to the shortcode callback function.</p>
 
@@ -63,25 +75,38 @@
             
             <h3><a name="scripting" class="anchor" href="#scripting"><span class="octicon octicon-link"></span></a>Scripting</h3>
             
+            <p>Shortcodes class is designed to extend controller, means you can use most of OpenCart API within shortcode function. Including but not limited to load model, load language, get route, get user info, get store id, even load MVC child.</p>
+            <p>Default shorcodes (<code>system/helper/shortcodes_default.php</code>) is purposely to give you example what you can do with shortcode. But now let's understand how <strong>tag-arguments-content</strong> used to develope shortcodes.</p>
+            
+            <h4><a name="tag" class="anchor" href="#tag"><span class="octicon octicon-link"></span></a>Tag</h4>
+            <p>Tag or shortcode name is referring to function name, should be all lowercase, letters or numbers and underscores.</p>
+<pre>
+function link_product($atts, $content = '') {
+   ... ...
+}
+</pre>
+            
             <h3><a name="limitation" class="anchor" href="#limitation"><span class="octicon octicon-link"></span></a>Limitation</h3>
 
             <p><strong>Unclosed Shortcodes</strong></p>
 
-            <p>Common usage of self-closing shortcodes is without "/", but it's not a good practice because it will give you an issue when using multiple self-closing and enclosing at same post.</p>
+            <p>Common usage of self-closing shortcodes (refer to WordPress user) is without "/". It's not a good practice because it will give you an issue when using multiple self-closing and enclosing at same post.</p>
 
-            <pre><code>[tag]
-            [tag]
-            CONTENT
-            [/tag]
-            </code></pre>
+<pre>
+[tag]
+[tag]
+CONTENT
+[/tag]
+</pre>
 
             <p>Keep consist to write self-closing shortcode with "/" and it works.</p>
 
-            <pre><code>[tag /]
-            [tag]
-            CONTENT
-            [/tag]
-            </code></pre>
+<pre>
+[tag /]
+[tag]
+CONTENT
+[/tag]
+</pre>
 
             <p><strong>CKEditor Behaviour</strong></p>
 
@@ -89,15 +114,13 @@
 
             <p>What we see on editor:</p>
 
-            <pre><code>[link_product id="42" /]
-            </code></pre>
+            <pre>[link_product id="42" /]</pre>
 
             <p>When we see the source code:</p>
 
-            <pre><code>[link_product&amp;nbsp;id="42" /]
-            </code></pre>
+            <pre>[link_product&amp;nbsp;id="42" /]</pre>
 
-            <p>Extra <em>&amp;nbsp;</em> at code above make shortcodes fails.</p>
+            <p>Extra <code>&amp;nbsp;</code> at code above make shortcodes fails.</p>
          </section>
       </div>
       
