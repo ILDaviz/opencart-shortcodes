@@ -36,21 +36,9 @@
          <section>
             <h1>Shortcode 101</h1>
 
-            <p>OpenCart shortcodes based on WordPress shortcodes and share similiar format. The first modification of WordPress shortcodes is by <a href="http://forum.opencart.com/viewtopic.php?f=23&amp;t=110892">rempong</a> at OpenCart forum. We learn, modificate and extend it into more robust implementation. </p>
+            <p>OpenCart shortcodes based on WordPress shortcodes API and share similiar format. The first modification of WordPress shortcodes is by <a href="http://forum.opencart.com/viewtopic.php?f=23&amp;t=110892">rempong</a> at OpenCart forum. We learn, modificate and extend it into more robust implementation. </p>
 
-            <p>In quick explanation, when a shortcode is inserted in a OpenCart post or page, it is replaced with some other content. In other words, we instruct OpenCart to find the macro that is in square brackets ( <code>[ ]</code> ) and replace it with the appropriate dynamic content, which is produced by a PHP function.</p>
-
-            <h3><a name="howitwork" class="anchor" href="#howitwork"><span class="octicon octicon-link"></span></a>How It Works</h3>
-            <p>How shortcodes works within OpenCart MVC? this is an overview of it:</p>
-            
-            <ol>
-               <li><a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/system/library/shortcodes.php">system/library/shortcodes.php</a> is modified version of WordPress <a href="">Shortcodes API</a> to work with OpenCart.</li>
-               <li>We automatically register shortcode and execute shortcode with <a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/vqmod/xml/opencart_shortcodes.xml" class="postlink hs-rss-link">vQmod file</a>.</li>
-               <li>Default shortcode is all available at <a href="https://github.com/qahar/opencart-shortcodes/blob/master/upload/system/library/shortcodes.php" class="postlink">system/library/shortcodes.php</a>.</li>
-               <li>Extend shortcode per theme basis at catalog/view/theme/*/shortcodes.php (sample coming soon).</li>
-            </ol>
-            
-            
+            <p>In quick explanation, when a shortcode is inserted in a OpenCart post or page, it is replaced with some other content. In other words, we instruct OpenCart to find the macro that is in square brackets ( <code>[ ]</code> ) and replace it with the appropriate dynamic content, which is produced by a PHP function. Makes it easy to insert advanced content into OpenCart.</p>
             
             <h3><a name="format" class="anchor" href="#format"><span class="octicon octicon-link"></span></a>Format</h3>
 
@@ -79,13 +67,59 @@
             <p>Default shorcodes (<code>system/helper/shortcodes_default.php</code>) is purposely to give you example what you can do with shortcode. But now let's understand how <strong>tag-arguments-content</strong> used to develope shortcodes.</p>
             
             <h4><a name="tag" class="anchor" href="#tag"><span class="octicon octicon-link"></span></a>Tag</h4>
-            <p>Tag or shortcode name is referring to function name, should be all lowercase, letters or numbers and underscores.</p>
+            <p>Tag (or shortcode) name is referring to function name, should be all lowercase, letters or numbers and underscores. The same tag name will overwrite the previous one; with sequence default-extensions-themes shortcodes (more explanation at <a href="shortcode-extend.html">extend shortcodes</a>)</p>
 <pre>
-function link_product($atts, $content = '') {
+function <span class="text-red">link_product</span>($atts, $content = '') {
    ... ...
 }
 </pre>
+            <h4><a name="attributes" class="anchor" href="#attributes"><span class="octicon octicon-link"></span></a>Attributes</h4>
+            <p>Attributes describe option of shortcode. By combining attributes, the shortcode can be simple or very complex. Inside shortcode, it is mandatory to set default value to register the attirubbutes and as fallback value.</p>
+            <p>There is two method to parse the attributes as code below.</p>
+<pre>
+function link_product(<span class="text-red">$atts</span>, $content = '') {
+   <span class="text-green">// method one</span>
+   <span class="text-red">extract($this->shortcodes->shortcode_atts(array(
+      'id'     => 0,
+      'path'   => 0,
+      'brand'  => 0
+   ), $atts));</span>
+   
+   if (<span class="text-red">$id</span>) {
+      ... ...
+   }
+   
+   <span class="text-green">// method two</span>
+   <span class="text-red">$data = $this->shortcodes->shortcode_atts(array(
+      'id'     => 0,
+      'path'   => 0,
+      'brand'  => 0
+   ), $atts);</span>
+   
+   if (<span class="text-red">$data['id']</span>) {
+      ... ...
+   }
+}
+</pre>
+<p>The suggestion to use is the first method.</p>
+
+            <h4><a name="content" class="anchor" href="#content"><span class="octicon octicon-link"></span></a>Content</h4>
             
+            <p>Content included in the return value without any escaping or encoding, the user can include raw HTML:</p>
+            
+            <pre>[caption]&lt;a href="http://example.com/">My Caption</a>[/caption]</pre>
+            
+            <p>Which would produce:</p>
+            
+            <pre><span class="caption">&lt;a href="http://example.com/">My Caption</a></span></pre>
+            
+            <p>The shortcode parser uses a single pass on the post content. This means that if the $content of a shortcode contains another shortcode, it won't be parsed.</p>
+            <p>If the enclosing shortcodes designed to allow another shortcode to be parsed, the handler function need to use <code>$this->shortcodes->do_shortcode()</code></p>
+<pre>
+function shortcodes ($atts, content = '') {
+   return '&ltspan class="shortcodes">' . <span class="text-red">$this->shortcodes->do_shortcode($content)</span> . '&lt/span>';
+}
+</pre>
             <h3><a name="limitation" class="anchor" href="#limitation"><span class="octicon octicon-link"></span></a>Limitation</h3>
 
             <p><strong>Unclosed Shortcodes</strong></p>
