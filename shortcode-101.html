@@ -40,6 +40,8 @@
 
             <p>In quick explanation, when a shortcode is inserted in a OpenCart post or page, it is replaced with some other content. In other words, we instruct OpenCart to find the macro that is in square brackets ( <code>[ ]</code> ) and replace it with the appropriate dynamic content, which is produced by a PHP function. Makes it easy to insert advanced content into OpenCart.</p>
             
+            <p>You can use shortcodes into all content input like product description, category, information, welcome module or even at template (.tpl) file.</p>
+            
             <h3><a name="format" class="anchor" href="#format"><span class="octicon octicon-link"></span></a>Format</h3>
 
             <p>Shortcodes available in to type:</p>
@@ -117,7 +119,7 @@ function link_product(<span class="text-red">$atts</span>, $content = '') {
             <p>If the enclosing shortcodes designed to allow another shortcode to be parsed, the handler function need to use <code>$this->shortcodes->do_shortcode()</code></p>
 <pre>
 function shortcodes ($atts, content = '') {
-   return '&ltspan class="shortcodes">' . <span class="text-red">$this->shortcodes->do_shortcode($content)</span> . '&lt/span>';
+   return '&ltspan class="shortcodes">' . <span class="text-red">$this->shortcodes->do_shortcode(<span class="text-green">$content</span>)</span> . '&lt/span>';
 }
 </pre>
             <h3><a name="limitation" class="anchor" href="#limitation"><span class="octicon octicon-link"></span></a>Limitation</h3>

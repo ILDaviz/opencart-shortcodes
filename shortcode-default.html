@@ -35,8 +35,82 @@
          
          <section>
             <h1>Default Shortcodes</h1>
+            
+            
+            <h4>Table of Content</h4>
+            <ol>
+               <li><a href="#link_product">link_product</a></li>
+               <li><a href="#link_category">link_category</a></li>
+               <li><a href="#link_brand">link_brand</a></li>
+               <li><a href="#link_info">link_info</a></li>
+               <li><a href="#link_custom">link_custom</a></li>
+               <li><a href="#link_store">link_store</a></li>
+               <li><a href="#module_product">module_product</a></li>
+               <li><a href="#module_slideshow">module_slideshow</a></li>
+               <li><a href="#video">video</a></li>
+               <li><a href="#image">image</a></li>
+               <li><a href="#debug">debug</a></li>
+            </ol>
 
-            <p>...</p>
+            <h3><a name="link_product" class="anchor" href="#link_product"><span class="octicon octicon-link"></span></a>link_product</h3>
+
+               <p>Generate product link with or without the category and manufacture parent.</p>
+
+               <h4><a name="link_product_options" class="anchor" href="#link_product_options"><span class="octicon octicon-link"></span></a>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>id</td>
+                        <td>Product id you want to link.</td>
+                     </tr>
+                     <tr>
+                        <td>path</td>
+                        <td>Category id in single or with parent. Single category: <code>14</code>, with parent <code>7_14</code>.</td>
+                     </tr>
+                     <tr>
+                        <td>brand</td>
+                        <td>Manufacturer id of product. If contain "path" and "brand", the brand will be abandoned. </td>
+                     </tr>
+                     <tr>
+                        <td>ssl</td>
+                        <td>Format output with http or https. Options: <code>1</code> or <code>0</code>. Default: <code>0</code>.</td>
+                     </tr>
+                     <tr>
+                        <td>title</td>
+                        <td>Title of the link.</td>
+                     </tr>
+                  </tbody>
+               </table>
+
+               <h4><a name="link_product_format" class="anchor" href="#link_product_format"><span class="octicon octicon-link"></span></a>Format</h4>
+               <p>Self-closing shortcode will return link with product name, while enclosing return link with custom text.</p>
+
+               <p><strong>Self-closing</strong></p>
+
+               <pre>[link_product id="xx" path="xx_xx" brand="xx" ssl="1" title="lorem ipsum" /]</pre>
+
+               <p><strong>Enclosing</strong></p>
+
+               <pre>[link_product id="xx" path="xx_xx"]custom text[/product_link]</pre>
+
+            <h3><a name="link_category" class="anchor" href="#link_category"><span class="octicon octicon-link"></span></a>link_category</h3>
+            <h3><a name="link_brand" class="anchor" href="#link_brand"><span class="octicon octicon-link"></span></a>link_brand</h3>
+            <h3><a name="link_info" class="anchor" href="#link_info"><span class="octicon octicon-link"></span></a>link_info</h3>
+            <h3><a name="link_custom" class="anchor" href="#link_custom"><span class="octicon octicon-link"></span></a>link_custom</h3>
+            <h3><a name="link_store" class="anchor" href="#link_store"><span class="octicon octicon-link"></span></a>link_store</h3>
+            <h3><a name="module_product" class="anchor" href="#module_product"><span class="octicon octicon-link"></span></a>module_product</h3>
+            <h3><a name="module_slideshow" class="anchor" href="#module_slideshow"><span class="octicon octicon-link"></span></a>module_slideshow</h3>
+            <h3><a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>video</h3>
+            <h3><a name="image" class="anchor" href="#image"><span class="octicon octicon-link"></span></a>image</h3>
+            <h3><a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>debug</h3>
+
          </section>
       </div>
       
