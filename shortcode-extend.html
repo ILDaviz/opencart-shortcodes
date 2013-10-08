@@ -36,7 +36,53 @@
          <section>
             <h1>Extend Shortcodes</h1>
 
-            <p>OpenCart shortcodes is nothing without possibility to extend available shortcodes or create the new one. But before continue this section, you must understand basic <a href="shortcode-101.html#scripting">scripting</a> of shortcodes.</p>
+            <p>OpenCart shortcodes come with possibility to overwrite available shortcodes or create the new one. But before continue this section, you must understand basic shortcodes <a href="shortcode-101.html#scripting">scripting</a>.</p>
+            
+            <h3>Rules of the Games</h3>
+            <p>1. Shortcodes class is extending controller, it's mean you can use most OpenCart API.</p>
+<pre>
+class ShortcodesExtend <span class="text-red">extends Controller</span> {
+   function my_shortcode($atts, $content = '') {
+      <span class="text-red">$this->load->model('catalog/product');
+      $this->load->language('product/product');
+      $this->url->link('product/product', 'product_id=' . $id, $ssl)
+      $this->getChild('module/slideshow', array( ... ... ));
+      ... ...</span>
+   }
+}
+</pre>
+            
+            <p>2. Shortcode tag is come from the function name.</p>
+<pre>
+class ShortcodesExtend extends Controller {
+   function <span class="text-red">link_product</span>($atts, $content = '') { ... ... }
+   function <span class="text-red">link_custom</span>($atts, $content = '') { ... ... }
+   function <span class="text-red">module_product</span>($atts) { ... ... }
+}
+</pre>
+            
+            <p>3. Same shortcode tag will overwrite previous shortcode.</p>
+<pre>
+<span class="text-blue"># system/helper/shortcodes_default.php</span>
+class ShortcodesDefault extends Controller {
+   function <span class="text-red">foobar</span>() { return 'default'; }
+}
+
+<span class="text-blue"># catalog/view/shortcodes/my_extensions.php</span>
+class ShortcodesMyExtensions extends Controller {
+   function <span class="text-red">foobar</span>() { return 'extensions'; }
+}
+
+<span class="text-blue"># catalog/view/theme/default/shortcodes_theme.php</span>
+class ShortcodesTheme extends Controller {
+   function <span class="text-red">foobar</span>() { return 'theme'; }
+}
+
+<span class="text-green">// Output of [foobar /]</span>
+theme
+</pre>
+
+            
          </section>
       </div>
       
