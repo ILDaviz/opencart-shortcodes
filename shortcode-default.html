@@ -58,13 +58,12 @@
                <p>Return product link with or without the category and manufacture parent.</p>
 
                <h4>Format</h4>
-               <p>Self-closing shortcode will return link with product name, while enclosing return link with custom text.</p>
-
-               <p><strong>Self-closing</strong></p>
+               
+               <p><strong>Self-closing</strong>: return product name with link.</p>
 
                <pre>[link_product id="xx" path="xx_xx" brand="xx" ssl="1" title="lorem ipsum" /]</pre>
 
-               <p><strong>Enclosing</strong></p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_product id="xx" path="xx_xx"]custom text[/link_product]</pre>
                
@@ -80,7 +79,7 @@
                   <tbody>
                      <tr>
                         <td>id</td>
-                        <td>Product id you want to link.</td>
+                        <td>Product id from <code>admin > catalog > products</code>.</td>
                      </tr>
                      <tr>
                         <td>path</td>
@@ -106,13 +105,12 @@
                <p>Return category link.</p>
 
                <h4>Format</h4>
-               <p>Self-closing shortcode will return link with category name, while enclosing return link with custom text.</p>
 
-               <p><strong>Self-closing</strong></p>
+               <p><strong>Self-closing</strong>: return category name with link.</p>
 
                <pre>[link_category path="xx_xx" ssl="1" title="lorem ipsum" /]</pre>
 
-               <p><strong>Enclosing</strong></p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_category path="xx"]custom text[/link_category]</pre>
                
@@ -128,7 +126,7 @@
                   <tbody>
                      <tr>
                         <td>path</td>
-                        <td>Category id in single or with parent. Single category: <code>14</code>, with parent <code>7_14</code>.</td>
+                        <td>Category id from <code>admin > catalog > categories</code>. Single category: <code>14</code>, with parent <code>7_14</code>.</td>
                      </tr>
                      <tr>
                         <td>ssl</td>
@@ -146,13 +144,12 @@
                <p>Return manufacture link.</p>
 
                <h4>Format</h4>
-               <p>Self-closing shortcode will return link with manufacture name, while enclosing return link with custom text.</p>
 
-               <p><strong>Self-closing</strong></p>
+               <p><strong>Self-closing</strong>: return manufacture name with link.</p>
 
                <pre>[link_brand brand="xx" ssl="1" title="lorem ipsum" /]</pre>
 
-               <p><strong>Enclosing</strong></p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_brand brand="xx"]custom text[/link_brand]</pre>
                
@@ -168,7 +165,7 @@
                   <tbody>
                      <tr>
                         <td>brand</td>
-                        <td>Manufacturer id.</td>
+                        <td>Manufacturer id from <code>admin > catalog > manufacturers</code>.</td>
                      </tr>
                      <tr>
                         <td>ssl</td>
@@ -185,13 +182,12 @@
                <p>Return information page link.</p>
 
                <h4>Format</h4>
-               <p>Self-closing shortcode will return link with information title, while enclosing return link with custom text.</p>
 
-               <p><strong>Self-closing</strong></p>
+               <p><strong>Self-closing</strong>: return information title with link.</p>
 
                <pre>[link_info id="xx" ssl="1" title="lorem ipsum" /]</pre>
 
-               <p><strong>Enclosing</strong></p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_info id="xx"]custom text[/link_info]</pre>
                
@@ -207,7 +203,7 @@
                   <tbody>
                      <tr>
                         <td>id</td>
-                        <td>Information id you want to link.</td>
+                        <td>Information id from <code>admin > catalog > information</code>.</td>
                      </tr>
                      <tr>
                         <td>ssl</td>
@@ -227,7 +223,7 @@
                
                <h4>Format</h4>
 
-               <p><strong>Enclosing</strong>: return link with custom text.</p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_custom route="information/information" args="information_id=3"]custom text[/link_custom]</pre>
                
@@ -265,7 +261,7 @@
 
                <h4>Format</h4>
 
-               <p><strong>Enclosing</strong>: return link with custom text.</p>
+               <p><strong>Enclosing</strong>: return custom text with link.</p>
 
                <pre>[link_store store="x" route="information/information" args="information_id=3"]custom text[/link_store]</pre>
                
@@ -307,7 +303,7 @@
 
                <h4>Format</h4>
 
-               <p><strong>Self-closing</strong>: return the module based on type.</p>
+               <p><strong>Self-closing</strong>: return module based on type.</p>
 
                <pre>[module_product type="featured" limit="5" img_w="100" img_h="100" /]</pre>
                
@@ -341,10 +337,171 @@
                </table>
                
             <h3><a name="module_slideshow" class="anchor" href="#module_slideshow"><span class="octicon octicon-link"></span></a>module_slideshow</h3>
-            <h3><a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>video</h3>
-            <h3><a name="image" class="anchor" href="#image"><span class="octicon octicon-link"></span></a>image</h3>
-            <h3><a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>debug</h3>
+               <p>Return slideshow module.</p>
 
+               <h4>Format</h4>
+
+               <p><strong>Self-closing</strong>: return module slideshow.</p>
+
+               <pre>[module_slideshow id="x" limit="5" img_w="100" img_h="100" /]</pre>
+               
+               <h4>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>id</td>
+                        <td>Banner id from <code>admin > system > design > banners</code></td>
+                     </tr>
+                     <tr>
+                        <td>limit</td>
+                        <td>Product limit to show. Default: <code>5</code>.</td>
+                     </tr>
+                     <tr>
+                        <td>img_w</td>
+                        <td>Product image width. Default: <code>80</code></td>
+                     </tr>
+                     <tr>
+                        <td>img_h</td>
+                        <td>Product image height. Default: <code>80</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+            
+            <h3><a name="login" class="anchor" href="#login"><span class="octicon octicon-link"></span></a>login</h3>
+               <p>User required to login to read the rest of the content.</p>
+               
+               <h4>Format</h4>
+
+               <p><strong>Enclosing</strong>: hide content from unlogged user, and show info to login.</p>
+
+               <pre>[login]content[/login]</pre>
+               <pre>[login message='Silahkan &lt;a href="%s">login&lt;/a> untuk melihat halaman ini.']content[/login]</pre>
+               
+               <h4>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>message</td>
+                        <td>Message to inform users that login is required to read the rest of content. <br/>Default: <code>Please &lt;a href="%s">login&lt;/a> to read the rest of the post.</code></td>
+                     </tr>
+                     <tr>
+                        <td>suffix</td>
+                        <td>Stylesheet class suffix.</td>
+                     </tr>
+                  </tbody>
+               </table>
+               
+            <h3><a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>video</h3>
+               <p>Embed video from YouTube or Vimeo.</p>
+               
+               <h4>Format</h4>
+
+               <p><strong>Self-closing</strong>: return video.</p>
+
+               <pre>[video type="vimeo" id="xxx" vid_w="450" vid_h="280" /]</pre>
+               
+               <h4>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>type</td>
+                        <td>Video source, options: <code>youtube</code>, <code>vimeo</code>. Default: <code>youtube</code></td>
+                     </tr>
+                     <tr>
+                        <td>id</td>
+                        <td>Video identifier.</td>
+                     </tr>
+                     <tr>
+                        <td>vid_w</td>
+                        <td>Video width. Default: <code>450</code></td>
+                     </tr>
+                     <tr>
+                        <td>vid_h</td>
+                        <td>Video height. Default: <code>280</code></td>
+                     </tr>
+                     <tr>
+                        <td>autoplay</td>
+                        <td>Autoplay the video? Options: <code>1</code> or <code>0</code>Default: <code>0</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+            
+            <h3><a name="image" class="anchor" href="#image"><span class="octicon octicon-link"></span></a>image</h3>
+               <p>Embed image with cache option.</p>
+               
+               <h4>Format</h4>
+
+               <p><strong>Self-closing</strong>: return image.</p>
+
+               <pre>[image src="image/data/xxx.jpg" img_w="450" img_h="280" title="" alt="" align="" /]</pre>
+               
+               <h4>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>src</td>
+                        <td>Image source.</td>
+                     </tr>
+                     <tr>
+                        <td>img_w</td>
+                        <td>Image width. Default: <code>200</code></td>
+                     </tr>
+                     <tr>
+                        <td>img_h</td>
+                        <td>Image height. Default: <code>200</code></td>
+                     </tr>
+                     <tr>
+                        <td>title</td>
+                        <td>Image title show when user hover.</td>
+                     </tr>
+                     <tr>
+                        <td>alt</td>
+                        <td>Alternative text when image not loaded.</td>
+                     </tr>
+                     <tr>
+                        <td>align</td>
+                        <td>Align the image. Options: <code>left</code>, <code>right</code>, <code>center</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+               
+            <h3><a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>debug</h3>
+               <p>Show debug information similiar to <a href="http://www.echothemes.com/extensions/system-information.html">System Information</a> but in simple format. Only admin user can see this.</p>
+               
+               <h4>Format</h4>
+
+               <p><strong>Self-closing</strong></p>
+
+               <pre>[debug /]</pre>
+               
          </section>
       </div>
       
