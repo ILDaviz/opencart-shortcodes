@@ -4,6 +4,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="chrome=1">
       <title>Extend Shortcodes - Opencart Shortcodes</title>
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
 
       <link rel="stylesheet" href="stylesheets/styles.css">
       <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -36,14 +37,73 @@
          <section>
             <h1>Extend Shortcodes</h1>
 
-            <p>OpenCart shortcodes come with possibility to overwrite available shortcodes or create the new one. But before continue this section, you must understand basic shortcodes <a href="shortcode-101.html#scripting">scripting</a>.</p>
+            <h3><a name="scripting" class="anchor" href="#scripting"><span class="octicon octicon-link"></span></a>Scripting</h3>
             
+            <p>Shortcodes class is designed to extend controller, means you can use most of OpenCart API within shortcode function. Including but not limited to load model, load language, get route, get user info, get store id, even load MVC child.</p>
+            <p>Default shorcodes (<code>system/helper/shortcodes_default.php</code>) is purposely to give you example what you can do with shortcode. But now let's understand how <strong>tag-attributes-content</strong> used to develope shortcodes.</p>
+            
+            <h4><a name="tag" class="anchor" href="#tag"><span class="octicon octicon-link"></span></a>Tag</h4>
+            <p>Tag (or shortcode) name is referring to function name, should be all lowercase, letters or numbers and underscores. The same tag name will overwrite the previous one; with sequence default-extensions-themes shortcodes (more explanation at <a href="shortcode-extend.html">extend shortcodes</a>)</p>
+<pre>
+function <span class="text-red">link_product</span>($atts, $content = '') {
+   ... ...
+}
+</pre>
+            <h4><a name="attributes" class="anchor" href="#attributes"><span class="octicon octicon-link"></span></a>Attributes</h4>
+            <p>Attributes describe option of shortcode. By combining attributes, the shortcode can be simple or very complex. Inside shortcode, it is mandatory to set default value to register the attirubbutes and as fallback value.</p>
+            <p>There is two method to parse the attributes as code below.</p>
+<pre>
+function link_product(<span class="text-red">$atts</span>, $content = '') {
+   <span class="text-green">// method one</span>
+   <span class="text-red">extract($this->shortcodes->shortcode_atts(array(
+      'id'     => 0,
+      'path'   => 0,
+      'brand'  => 0
+   ), $atts));</span>
+   
+   if (<span class="text-red">$id</span>) {
+      ... ...
+   }
+   
+   <span class="text-green">// method two</span>
+   <span class="text-red">$data = $this->shortcodes->shortcode_atts(array(
+      'id'     => 0,
+      'path'   => 0,
+      'brand'  => 0
+   ), $atts);</span>
+   
+   if (<span class="text-red">$data['id']</span>) {
+      ... ...
+   }
+}
+</pre>
+<p>The suggestion to use is the first method.</p>
+
+            <h4><a name="content" class="anchor" href="#content"><span class="octicon octicon-link"></span></a>Content</h4>
+            
+            <p>Content included in the return value without any escaping or encoding, the user can include raw HTML:</p>
+            
+            <pre>[caption]&lt;a href="http://example.com/">My Caption</a>[/caption]</pre>
+            
+            <p>Which would produce:</p>
+            
+            <pre>&lt;span class="caption">&lt;a href="http://example.com/">My Caption&lt;/a>&lt;/span></pre>
+            
+            <p>The shortcode parser uses a single pass on the post content. This means that if the $content of a shortcode contains another shortcode, it won't be parsed.</p>
+            <p>If the enclosing shortcodes designed to allow another shortcode to be parsed, the handler function need to use <code>$this->shortcodes->do_shortcode()</code></p>
+<pre>
+function shortcodes ($atts, content = '') {
+   return '&ltspan class="shortcodes">' . <span class="text-red">$this->shortcodes->do_shortcode(<span class="text-green">$content</span>)</span> . '&lt/span>';
+}
+</pre>
+
             <h3>Rules of the Games</h3>
-            <p>1. Shortcodes class is extending controller, it's mean you can use most OpenCart API.</p>
+            <ol>
+               <li>Shortcodes class is extending controller, it's mean you can use most OpenCart API.
 <pre>
 class ShortcodesExtend <span class="text-red">extends Controller</span> {
    function my_shortcode($atts, $content = '') {
-      <span class="text-red">$this->load->model('catalog/product');
+      <span class="text-green">$this->load->model('catalog/product');
       $this->load->language('product/product');
       $this->url->link('product/product', 'product_id=' . $id, $ssl)
       $this->getChild('module/slideshow', array( ... ... ));
@@ -51,8 +111,8 @@ class ShortcodesExtend <span class="text-red">extends Controller</span> {
    }
 }
 </pre>
-            
-            <p>2. Shortcode tag is come from the function name.</p>
+               </li>
+               <li>Shortcode tag is come from the function name. All lowercase, letters, numbers and underscores.</p>
 <pre>
 class ShortcodesExtend extends Controller {
    function <span class="text-red">link_product</span>($atts, $content = '') { ... ... }
@@ -60,8 +120,8 @@ class ShortcodesExtend extends Controller {
    function <span class="text-red">module_product</span>($atts) { ... ... }
 }
 </pre>
-            
-            <p>3. Same shortcode tag will overwrite previous shortcode.</p>
+               </li>
+               <li>Same shortcode tag will overwrite previous shortcode.</p>
 <pre>
 <span class="text-blue"># system/helper/shortcodes_default.php</span>
 class ShortcodesDefault extends Controller {
@@ -81,7 +141,18 @@ class ShortcodesTheme extends Controller {
 <span class="text-green">// Output of [foobar /]</span>
 theme
 </pre>
-
+               </li>
+               <li>Shortcodes inside $content is not automatically parsed, manual act is required.</p>
+<pre>
+function shortcodes ($atts, <span class="text-green">content</span> = '') {
+   return '&lt;span class="shortcodes">' . <span class="text-red">$this->shortcodes->do_shortcode(<span class="text-green">$content</span>)</span> . '&lt;/span>';
+}
+</pre>
+               </li>
+            </ol>
+            
+            <h3>Shortcodes Files</h3>
+            <p>For an extensions to have shortcodes <code>catalog/view/shortcodes/</code></p>
             
          </section>
       </div>
