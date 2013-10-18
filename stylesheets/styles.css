@@ -65,6 +65,8 @@ a.anchor .octicon-link { display:none; }
 a.anchor:hover { border:0; }
 a.anchor:hover .octicon-link{ display:inline-block;color:#c10000; }
 
+ol.l-a { list-style-type:lower-alpha; }
+
 .wrapper {
    width:990px;
    margin:0 auto;

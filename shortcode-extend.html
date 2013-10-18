@@ -40,10 +40,10 @@
             <h3><a name="scripting" class="anchor" href="#scripting"><span class="octicon octicon-link"></span></a>Scripting</h3>
             
             <p>Shortcodes class is designed to extend controller, means you can use most of OpenCart API within shortcode function. Including but not limited to load model, load language, get route, get user info, get store id, even load MVC child.</p>
-            <p>Default shorcodes (<code>system/helper/shortcodes_default.php</code>) is purposely to give you example what you can do with shortcode. But now let's understand how <strong>tag-attributes-content</strong> used to develope shortcodes.</p>
+            <p>Default shorcodes (<code>system/helper/shortcodes_default.php</code>) is purposely to give you example what you can do with shortcodes. But now let's understand how <strong>tag-attributes-content</strong> used to develope shortcodes.</p>
             
             <h4><a name="tag" class="anchor" href="#tag"><span class="octicon octicon-link"></span></a>Tag</h4>
-            <p>Tag (or shortcode) name is referring to function name, should be all lowercase, letters or numbers and underscores. The same tag name will overwrite the previous one; with sequence default-extensions-themes shortcodes (more explanation at <a href="shortcode-extend.html">extend shortcodes</a>)</p>
+            <p>Tag (or shortcode) name is referring to function name, should be all lowercase, letters or numbers and underscores.</p>
 <pre>
 function <span class="text-red">link_product</span>($atts, $content = '') {
    ... ...
@@ -97,8 +97,23 @@ function shortcodes ($atts, content = '') {
 }
 </pre>
 
-            <h3>Rules of the Games</h3>
+            <h3>Development</h3>
             <ol>
+               <li>Shortcodes file structure:
+                  <ol class="l-a">
+                     <li>Default shortcode file is <code>system/helper/shortcodes_default.php</code></li>
+                     <li>Shortcodes for an extensions at <code>catalog/view/shortcodes/*.php</code></li>
+                     <li>Shortcode file for a theme is <code>catalog/view/theme/default/shortcodes_theme.php</code></li>
+                     <li>Custom shortcodes purposely for user to customize default, extensions or theme shortcodes without worrying update break. The shortcode file is <code>catalog/view/theme/default/shortcodes_custom.php</code></li>
+                  </ol>
+               </li>
+               <li>Class name of the shortcode is contain the "Shortcodes" following by the filename in titlecase. As an example, if your shortcode extensions file is <code>my_extensions.php</code> then the class would be:
+<pre>
+class <span class="text-red">ShortcodesMyExtensions</span> extends Controller {
+   ... ...
+}
+</pre>
+               </li>
                <li>Shortcodes class is extending controller, it's mean you can use most OpenCart API.
 <pre>
 class ShortcodesExtend <span class="text-red">extends Controller</span> {
@@ -150,10 +165,7 @@ function shortcodes ($atts, <span class="text-green">content</span> = '') {
 </pre>
                </li>
             </ol>
-            
-            <h3>Shortcodes Files</h3>
-            <p>For an extensions to have shortcodes <code>catalog/view/shortcodes/</code></p>
-            
+
          </section>
       </div>
       
