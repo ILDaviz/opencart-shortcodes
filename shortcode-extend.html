@@ -36,6 +36,13 @@
          
          <section>
             <h1>Extend Shortcodes</h1>
+            
+            <h4>Table of Content</h4>
+            <ol>
+               <li><a href="#scripting">Scripting</a></li>
+               <li><a href="#development">Development</a></li>
+               <li><a href="#shortcodes_ready">Shortcodes Ready</a></li>
+            </ol>
 
             <h3><a name="scripting" class="anchor" href="#scripting"><span class="octicon octicon-link"></span></a>Scripting</h3>
             
@@ -97,7 +104,7 @@ function shortcodes ($atts, content = '') {
 }
 </pre>
 
-            <h3>Development</h3>
+            <h3><a name="development" class="anchor" href="#development"><span class="octicon octicon-link"></span></a>Development</h3>
             <ol>
                <li>Shortcodes file structure:
                   <ol class="l-a">
@@ -136,7 +143,7 @@ class ShortcodesExtend extends Controller {
 }
 </pre>
                </li>
-               <li>Same shortcode tag will overwrite previous shortcode.</p>
+               <li>Same shortcode tag will overwrite previous shortcode.
 <pre>
 <span class="text-blue"># system/helper/shortcodes_default.php</span>
 class ShortcodesDefault extends Controller {
@@ -165,7 +172,26 @@ function shortcodes ($atts, <span class="text-green">content</span> = '') {
 </pre>
                </li>
             </ol>
-
+            
+            <h3><a name="shortcodes_ready" class="anchor" href="#shortcodes_ready"><span class="octicon octicon-link"></span></a>Shortcodes Ready</h3>
+            <ol>
+               <li>For extensions and themes developer who want to provide shortcodes ready for their products, it would be simply to provide shortcodes file as mentioned at <a href="#development">Development</a> section.</p></li>
+               <li>But you need aware to not forget to strip shortcodes (during post) if your extensions or themes have customer input.
+<pre>
+if (class_exists(<span class="text-red">'Shortcodes'<span>)) { <span class="text-green">// Check if shortcodes installed and strip user input<span>
+   $this->request->post = <span class="text-red">$this->shortcodes->strip_shortcodes(<span class="text-green">$this->request->post</span>)</span>;
+}
+</pre>
+Other alternative
+            <pre>
+if ($this->registry->has(<span class="text-red">'shortcodes'</span>)) { <span class="text-green">// Check if registry conatain shortcodes and strip user input<span>
+   $this->request->post = <span class="text-red">$this->shortcodes->strip_shortcodes(<span class="text-green">$this->request->post</span>)</span>;
+}
+</pre>               
+               </li>
+               <li>Shortcodes is not executed by default for admin. If your products require shortcodes to work at admin (ex. mail), you can parsed it manually with <code>$this->shortcodes->do_shortcode($mail_content);</code></li>
+            </ol>
+            
          </section>
       </div>
       
