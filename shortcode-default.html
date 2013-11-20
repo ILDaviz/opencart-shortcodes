@@ -48,8 +48,10 @@
                <li><a href="#link_store">link_store</a></li>
                <li><a href="#module_product">module_product</a></li>
                <li><a href="#module_slideshow">module_slideshow</a></li>
+               <li><a href="#login">login</a></li>
                <li><a href="#video">video</a></li>
                <li><a href="#image">image</a></li>
+               <li><a href="#image">image_modal</a></li>
                <li><a href="#debug">debug</a></li>
             </ol>
 
@@ -382,7 +384,7 @@
                <p><strong>Enclosing</strong>: hide content from unlogged user, and show info to login.</p>
 
                <pre>[login]content[/login]</pre>
-               <pre>[login message='Silahkan &lt;a href="%s">login&lt;/a> untuk melihat halaman ini.']content[/login]</pre>
+               <pre>[login msg_login='Silahkan &lt;a href="%s">login&lt;/a> untuk melihat halaman ini.']content[/login]</pre>
                
                <h4>Options</h4>
                
@@ -395,15 +397,24 @@
                   </thead>
                   <tbody>
                      <tr>
-                        <td>message</td>
-                        <td>Message to inform users that login is required to read the rest of content. <br/>Default: <code>Please &lt;a href="%s">login&lt;/a> to read the rest of the post.</code></td>
+                        <td>msg_login*</td>
+                        <td>Message to inform users that login is required to read the rest of content.</td>
+                     </tr>
+                     <tr>
+                        <td>msg_group*</td>
+                        <td>Message to inform users that certain group is required to access the content.</td>
                      </tr>
                      <tr>
                         <td>suffix</td>
                         <td>Stylesheet class suffix.</td>
                      </tr>
+                     <tr>
+                        <td>group</td>
+                        <td>Customer group id from <code>admin &gt; sales &gt; customer &gt; customer groups</code></td>
+                     </tr>
                   </tbody>
                </table>
+               <p>* Optional. To support multi-language you can edit <code>catalog/language/english/common/shortcodes_default.php</code></p>
                
             <h3><a name="video" class="anchor" href="#video"><span class="octicon octicon-link"></span></a>video</h3>
                <p>Embed video from YouTube or Vimeo.</p>
@@ -442,7 +453,7 @@
                      </tr>
                      <tr>
                         <td>autoplay</td>
-                        <td>Autoplay the video? Options: <code>1</code> or <code>0</code>Default: <code>0</code></td>
+                        <td>Autoplay the video? Options: <code>1</code> or <code>0</code>. Default: <code>0</code></td>
                      </tr>
                   </tbody>
                </table>
@@ -490,8 +501,71 @@
                         <td>align</td>
                         <td>Align the image. Options: <code>left</code>, <code>right</code>, <code>center</code></td>
                      </tr>
+                     <tr>
+                        <td>cache</td>
+                        <td>Option to use OpenCart cache or not (load image directly). Options: <code>1</code> or <code>0</code>. Default <code>1</code></td>
+                     </tr>
                   </tbody>
                </table>
+               
+            <h3><a name="image_modal" class="anchor" href="#image_modal"><span class="octicon octicon-link"></span></a>image_modal</h3>
+               <p>Embed image with modalbox feature</p>
+               
+               <h4>Format</h4>
+
+               <p><strong>Self-closing</strong>: return image.</p>
+
+               <pre>[image_modal src="image/data/your_image.jpg" img_w="450" img_h="280" title="" alt="" align="" caption="" load_script="1" /]</pre>
+               
+               <h4>Options</h4>
+               
+               <table class="shortcode-options">
+                  <thead>
+                     <tr>
+                        <th>Attribute</td>
+                        <th>Description.</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>src</td>
+                        <td>Image source.</td>
+                     </tr>
+                     <tr>
+                        <td>img_w</td>
+                        <td>Image width. Default: <code>200</code></td>
+                     </tr>
+                     <tr>
+                        <td>img_h</td>
+                        <td>Image height. Default: <code>200</code></td>
+                     </tr>
+                     <tr>
+                        <td>title</td>
+                        <td>Image title show when user hover.</td>
+                     </tr>
+                     <tr>
+                        <td>alt</td>
+                        <td>Alternative text when image not loaded.</td>
+                     </tr>
+                     <tr>
+                        <td>align</td>
+                        <td>Align the image. Options: <code>left</code>, <code>right</code>, <code>center</code></td>
+                     </tr>
+                     <tr>
+                        <td>caption*</td>
+                        <td>Click message under the image.</td>
+                     </tr>
+                     <tr>
+                        <td>load_script</td>
+                        <td>Load modalbox javascript. Use this on page that not load OpenCart modalbox (ex. information page). Options: <code>1</code> or <code>0</code>. Default <code>0</code></td>
+                     </tr>
+                     <tr>
+                        <td>cache</td>
+                        <td>Option to use OpenCart cache or not (load image directly). Options: <code>1</code> or <code>0</code>. Default <code>1</code></td>
+                     </tr>
+                  </tbody>
+               </table>
+               <p>* Optional. To support multi-language you can edit <code>catalog/language/english/common/shortcodes_default.php</code></p>
                
             <h3><a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>debug</h3>
                <p>Show debug information similiar to <a href="http://www.echothemes.com/extensions/system-information.html">System Information</a> but in simple format. Only admin user can see this.</p>
