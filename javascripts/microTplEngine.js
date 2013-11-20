@@ -1,11 +1,11 @@
 (function($) {
-   /* My micro jQuery templating engine 
-    * https://gist.github.com/tsi/5137145
-    *
-    * Usage:
-    *   <section data-html="content"></section>
-    *
+   /* 
     * Will load <content.html> into <section>
+    *
+    * @author Tsachi Shlidor
+    * @link https://gist.github.com/tsi/5137145
+    *
+    * @example <section data-html="content"></section> Load content.html
     */
 
    $(document).ready(function() {
